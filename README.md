@@ -6,6 +6,6 @@ This is a personal portfolio website developed as part of the ICT171 unit. It sh
 # Video Explainer is in this 
 
 Watch the full project walkthrough on YouTube:  
-👉 [Watch Demo](https://youtu.be/YrKss14oPII)
+👉 [Watch Explainer ](https://youtu.be/YrKss14oPII)
 
 
