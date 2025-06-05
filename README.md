@@ -1,12 +1,4 @@
-# Website_Kandhari
-# 🎓 Portfolio Website – ICT171 Project
 
-This is a personal portfolio website developed as part of the ICT171 unit. It showcases my web development skills, projects, and academic work in an interactive and responsive layout.
-
-# Video Explainer is in this 
-
-Watch the full project walkthrough on YouTube:  
-👉 [Watch Explainer ](https://youtu.be/YrKss14oPII)
 
 
 # Rishabh Kandhari's Professional Portfolio Website
@@ -17,23 +9,23 @@ Watch the full project walkthrough on YouTube:
 🎓 **Student:** Rishabh Kandhari | **ID:** 35118707
 
 ---
-
 ## 📖 Project Overview
 
 **AWS Infrastructure:** EC2 IP Address: `54.66.64.231`  
 **Custom Domain:** [https://rishabhkandhari14.com](https://rishabhkandhari14.com)  
 **GitHub Repository:** [Website_Kandhari](https://github.com/KandhariRishabh14/Website_Kandhari)
 
-This project demonstrates enterprise-level web application deployment on Amazon Web Services (AWS) infrastructure, featuring automated DevOps workflows, real-time monitoring systems, and professional security implementations. The solution showcases complete end-to-end deployment from development to production with industry-standard automation practices.
+This comprehensive project showcases the complete end-to-end deployment of a professional portfolio website on Amazon Web Services (AWS) EC2 infrastructure. The implementation goes beyond basic web hosting to include enterprise-level features such as automated backup systems, continuous integration workflows, real-time monitoring, and robust security configurations.
 
-### 🎯 Key Technical Achievements:
+### 🎯 What Makes This Project Special:
 
-**Professional Cloud Infrastructure:** Built on AWS EC2 with Ubuntu, featuring production-grade Nginx web server, custom domain integration via Route 53, and A+ rated SSL security through Let's Encrypt certificates.
+**Professional Infrastructure:** Built on AWS EC2 with Ubuntu, featuring industry-standard Nginx web server configuration, custom domain integration, and enterprise-grade SSL security through Let's Encrypt certificates.
 
-**Advanced DevOps Automation:** Three sophisticated bash scripts provide automated daily backups with disaster recovery, continuous GitHub synchronization for seamless deployments, and proactive system maintenance - all monitored through real-time Slack notifications.
+**Advanced Automation:** Three sophisticated bash scripts provide automated website backups, continuous GitHub synchronization, and system maintenance - all with real-time Slack notifications for monitoring and alerting.
 
-**Enterprise Security & Performance:** HTTPS-only access with perfect SSL Labs security rating, automated certificate renewal, comprehensive logging, and professional monitoring architecture suitable for production environments.
+**Real-World Application:** This isn't just a school project - it's a production-ready website with professional contact forms, resume downloads, and responsive design that could serve as an actual portfolio for job applications.
 
+**DevOps Integration:** Implements core DevOps principles including Infrastructure as Code documentation, automated deployments, monitoring, and disaster recovery procedures.
 ---
 
 ## 📅 Development Timeline (May 19-30, 2024)
@@ -428,7 +420,6 @@ DISK_USAGE=$(df -h /var/www | tail -1 | awk '{print $5}')
 MESSAGE="🛡️ Backup Report for $HOSTNAME
 ✅ Status: Completed Successfully
 📁 File: $BACKUP_FILE (Size: $FILE_SIZE)
-💿 Disk Usage: $DISK_USAGE
 🕐 Timestamp: $(date '+%Y-%m-%d %H:%M:%S %Z')"
 
 🛠️ Comprehensive Troubleshooting Guide
