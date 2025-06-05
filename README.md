@@ -188,7 +188,8 @@ Enable and Test Configuration:
 bashsudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
-7. 🌐 DNS Configuration with Route 53
+```
+## 7. 🌐 DNS Configuration with Route 53
 Domain Registration Process:
 
 Access AWS Route 53 console
@@ -220,7 +221,7 @@ Testing Tool: DNS Checker
 Propagation Time: 1-5 minutes globally
 Verification: All global DNS servers showing correct resolution
 
-8. 🔒 SSL Certificate Implementation - Enterprise Security
+## 8. 🔒 SSL Certificate Implementation - Enterprise Security
 Automated SSL Certificate Installation:
 bashsudo certbot --nginx -d rishabhkandhari14.com -d www.rishabhkandhari14.com
 Automatic Renewal Configuration:
