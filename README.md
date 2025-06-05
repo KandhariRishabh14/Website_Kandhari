@@ -148,7 +148,7 @@ chmod 400 website.pem
 ssh -i "website.pem" ubuntu@54.66.64.231
 ```
 ### 4. 📦 Server Software Installation - Production Environment Setup
-# System update and security patches
+## System update and security patches
 ```powershell
 sudo apt update && sudo apt upgrade -y
 ```
@@ -248,7 +248,6 @@ sudo systemctl status certbot.timer
 ```
 ### SSL Security Verification:
 
-
 Testing Service: SSL Labs
 Security Rating: A+ (Perfect score)
 Certificate Authority: Let's Encrypt
@@ -291,14 +290,11 @@ Proven Performance Evidence:
 -rw-rw-r-- 1 ubuntu ubuntu 5159126 Jun  5 01:08 portfolio_backup_2025-06-05_01-08-01.tar.gz
 Achievements:
 ```
-✅ 13 successful automated backups from May 18 - June 5
-✅ Daily execution at 1:08 AM via crontab scheduling
-✅ Consistent backup size (~5MB compressed archives)
-✅ Professional timestamping format for easy identification
 
 Scheduling Configuration:
-bash# Crontab entry for daily backups at 1:08 AM
+### Crontab entry for daily backups at 1:08 AM
 8 1 * * * /home/ubuntu/website_backup.sh
+
 ### 2. 🔄 Continuous Integration & Deployment Pipeline
 Business Purpose: Implements automated continuous deployment by pulling latest GitHub changes every 5 minutes, enabling rapid feature deployment with zero-downtime updates.
 Script Location: /home/ubuntu/github_auto_pull.sh
@@ -337,10 +333,6 @@ Fast-forward
  README.md | 47 +++++++++++++++++++++++++++++------------------
 Proven Capabilities:
 ```
-✅ Real-time automated deployments every 5 minutes
-✅ Professional logging system with detailed commit tracking
-✅ Multiple successful repository synchronizations documented
-✅ Zero-downtime website updates with automatic integration
 
 High-Frequency Deployment Schedule:
 ## Crontab entry for continuous integration every 5 minutes
@@ -376,10 +368,6 @@ fi
 ```
 ##Enterprise Features:
 
-###✅ Intelligent error handling with success/failure notifications
-###✅ Automatic reboot detection when critical updates require restart
-###✅ Hostname integration for multi-server environment identification
-###✅ Comprehensive system maintenance with apt package management
 
 Strategic Maintenance Scheduling:
 ### Crontab entry for daily maintenance at 2:40 PM
@@ -605,7 +593,8 @@ Review logs: grep CRON /var/log/syslog
 
 ### ✨ Advanced Features & Professional Enhancements
 Modern Web Development Implementation:
-## Email.js Integration: Professional contact form functionality without backend server requirements, enabling real-time communication with website visitors through automated email forwarding.
+
+###Email.js Integration: Professional contact form functionality without backend server requirements, enabling real-time communication with website visitors through automated email forwarding.
 Responsive Design Framework: Mobile-first CSS Grid and Flexbox implementation ensuring optimal user experience across all device types and screen sizes.
 JavaScript Interactivity: Dynamic content loading, smooth scroll animations, form validation, and interactive user interface elements providing professional user experience.
 Performance Optimization: Optimized image assets, efficient CSS/JavaScript execution, and fast server response times achieving excellent performance metrics.
@@ -617,14 +606,14 @@ Security headers preventing XSS and clickjacking attacks
 Content Security Policy implementation
 Automated security updates through custom maintenance scripts
 
-## Business Functionality:
+### Business Functionality:
 
 Professional portfolio showcase with project demonstrations
 Functional contact form with Email.js service integration
 Resume download capability for potential employers
 Social media integration and professional networking links
 
-## Scalability & Maintenance:
+### Scalability & Maintenance:
 
 Modular design enabling easy feature additions
 SEO optimization with semantic HTML and meta tags
@@ -677,18 +666,18 @@ Industry Preparation: This project directly prepares for professional roles incl
 Portfolio Demonstration: Live website showcases technical capabilities to potential employers with functional features, professional design, and enterprise-level automation systems.
 Technical Interview Readiness: Comprehensive experience discussing cloud infrastructure, automated deployment, security implementation, and system administration in professional settings.
 
-### 📞 Contact & Project Information
-Student: Rishabh Kandhari
-Student ID: 35118707
-Course: ICT 171 Assignment 2
-Email: Contact via website form
-Project Verification:
+### 📞 [Contact & Project Information](#contact--project-information)
 
-🌐 Live Website: https://rishabhkandhari14.com
-📁 GitHub Repository: Website_Kandhari
-🔒 SSL Certificate: SSL Labs Test
-🌍 DNS Verification: DNS Checker
+**Student:** Rishabh Kandhari  
+**Student ID:** 35118707  
+**Course:** ICT 171 Assignment 2  
+**Email:** [Contact via Website](https://rishabhkandhari14.com/#contact)  
 
+**Project Verification:**  
+- 🌐 [Live Website](https://rishabhkandhari14.com)  
+- 📁 [GitHub Repository](https://github.com/your-username/Website_Kandhari)  
+- 🔒 [SSL Certificate (SSL Labs Test)](https://www.ssllabs.com/ssltest/analyze.html?d=rishabhkandhari14.com)  
+- 🌍 [DNS Verification (DNS Checker)](https://dnschecker.org/#A/rishabhkandhari14.com)
 
 ### 📄 License & Academic Integrity
 This project is developed for ICT 171 Assignment 2 educational purposes and is licensed under Creative Commons. All implementation decisions, automation scripts, and documentation represent original student work demonstrating comprehensive understanding of cloud infrastructure, system administration, and professional web development practices.
