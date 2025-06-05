@@ -146,29 +146,37 @@ chmod 400 website.pem
 
 # Connect to server
 ssh -i "website.pem" ubuntu@54.66.64.231
-4. 📦 Server Software Installation - Production Environment Setup
-bash# System update and security patches
+```
+### 4. 📦 Server Software Installation - Production Environment Setup
+# System update and security patches
+```powershell
 sudo apt update && sudo apt upgrade -y
-
-# Install core web server components
+```
+## Install core web server components
+```powershell
 sudo apt install nginx git -y
-
-# Install SSL certificate management
+```
+## Install SSL certificate management
+```powershell
 sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-5. 📁 Website Deployment - GitHub Integration
+```
+### 5. 📁 Website Deployment - GitHub Integration
 bash# Navigate to web root directory
+```powershell
 cd /var/www
-
+```
 # Clone repository to production location
+
 sudo git clone https://github.com/KandhariRishabh14/Website_Kandhari.git portfolio
 
 # Verify deployment
 ls -la /var/www/portfolio
-6. ⚙️ Nginx Web Server Configuration
+### 6. ⚙️ Nginx Web Server Configuration
 Remove Default Configuration:
-bashsudo rm /etc/nginx/sites-enabled/default
+```powershell
+sudo rm /etc/nginx/sites-enabled/default
 Create Production Virtual Host:
 bashsudo nano /etc/nginx/sites-available/portfolio
 Virtual Host Configuration:
@@ -182,10 +190,11 @@ nginxserver {
     location / {
         try_files $uri $uri/ =404;
     }
-    
+```    
 
-Enable and Test Configuration:
-bashsudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
+## Enable and Test Configuration:
+```powershell
+ ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
