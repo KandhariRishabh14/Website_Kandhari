@@ -299,7 +299,7 @@ Achievements:
 Scheduling Configuration:
 bash# Crontab entry for daily backups at 1:08 AM
 8 1 * * * /home/ubuntu/website_backup.sh
-2. 🔄 Continuous Integration & Deployment Pipeline
+### 2. 🔄 Continuous Integration & Deployment Pipeline
 Business Purpose: Implements automated continuous deployment by pulling latest GitHub changes every 5 minutes, enabling rapid feature deployment with zero-downtime updates.
 Script Location: /home/ubuntu/github_auto_pull.sh
 ```powershell
@@ -343,7 +343,7 @@ Proven Capabilities:
 ✅ Zero-downtime website updates with automatic integration
 
 High-Frequency Deployment Schedule:
-### Crontab entry for continuous integration every 5 minutes
+## Crontab entry for continuous integration every 5 minutes
 ```powershell
 */5 * * * * /home/ubuntu/github_auto_pull.sh
 ```
@@ -374,17 +374,20 @@ if [ -f /var/run/reboot-required ]; then
     sudo reboot
 fi
 ```
-Enterprise Features:
+##Enterprise Features:
 
-✅ Intelligent error handling with success/failure notifications
-✅ Automatic reboot detection when critical updates require restart
-✅ Hostname integration for multi-server environment identification
-✅ Comprehensive system maintenance with apt package management
+###✅ Intelligent error handling with success/failure notifications
+###✅ Automatic reboot detection when critical updates require restart
+###✅ Hostname integration for multi-server environment identification
+###✅ Comprehensive system maintenance with apt package management
 
 Strategic Maintenance Scheduling:
-bash# Crontab entry for daily maintenance at 2:40 PM
+### Crontab entry for daily maintenance at 2:40 PM
+
+```powershell
 40 14 * * * /home/ubuntu/auto_update.sh
-Script Performance Verification:
+```
+### Script Performance Verification:
 System Health Status:
 ```powershell
 ubuntu@ip-172-31-25-27:/var/www/portfolio$ sudo systemctl --failed
@@ -398,16 +401,21 @@ ubuntu@ip-172-31-25-27:~$ ls -la /home/ubuntu/*.sh
 ```
 Script Installation & Configuration:
 ### 1. Create Script Files:
-bashsudo nano /home/ubuntu/website_backup.sh
+```powershell
+sudo nano /home/ubuntu/website_backup.sh
 sudo nano /home/ubuntu/github_auto_pull.sh
 sudo nano /home/ubuntu/auto_update.sh
+```
 ### 2. Set Executable Permissions:
-bashsudo chmod +x /home/ubuntu/website_backup.sh
+```powershell
+sudo chmod +x /home/ubuntu/website_backup.sh
 sudo chmod +x /home/ubuntu/github_auto_pull.sh
 sudo chmod +x /home/ubuntu/auto_update.sh
+```
 ### 3. Configure Automated Scheduling:
-bashcrontab -e
-
+```powershell
+crontab -e
+```
  Add all three automation schedules:
 ```powershell
 8 1 * * * /home/ubuntu/website_backup.sh
@@ -431,44 +439,46 @@ Name: "Portfolio-Server-Monitor" (descriptive naming)
 Select appropriate workspace
 
 
-Configure Incoming Webhooks:
+### Configure Incoming Webhooks:
 
 Navigate to "Incoming Webhooks" in sidebar
 Activate incoming webhooks (toggle to "On")
 Create unique webhook for each service
 
 
-Implemented Channel Structure:
+### 1.Implemented Channel Structure:
 
-Backup Alerts Channel - Daily backup status and storage management
+## 1.Backup Alerts Channel - Daily backup status and storage management
 
 Real-time backup confirmations with file names
 Immediate success notifications with timestamp integration
 Professional backup completion messages
 
-GitHub Updates Channel - Continuous integration notifications
+## 2.GitHub Updates Channel - Continuous integration notifications
 
 Real-time deployment confirmations with commit details
 Comprehensive change logs and repository synchronization status
 Automated pull request integration tracking
 
-System Maintenance Channel - Server health and security updates
+## 3.System Maintenance Channel - Server health and security updates
 
 Success/failure notifications for system updates
 Automatic reboot alerts with hostname identification
 Critical system maintenance status reporting
 
 
-🛠️ Comprehensive Troubleshooting Guide
+### 🛠️ Comprehensive Troubleshooting Guide
 Professional System Administration Methodology:
 Diagnostic Approach: Systematic problem identification, variable isolation, hypothesis testing, and solution implementation with proper documentation.
-1. 🤖 Cron Job Automation Diagnostics
+
+## 1. 🤖 Cron Job Automation Diagnostics
 Symptom: Scripts execute manually but fail during scheduled cron execution.
 Diagnostic Process:
 Step 1: Verify Cron Configuration
-bash# Display active cron jobs
+## Display active cron jobs
+```powershell
 crontab -l
-
+```
 # Expected output:
 ```powershell
 # 8 1 * * * /home/ubuntu/website_backup.sh
@@ -497,20 +507,23 @@ sudo chown ubuntu:ubuntu /home/ubuntu/*.sh
 ```
 ### 2. 🔐 SSH Authentication Management
 Windows PowerShell Solution:
-powershell# Correct permission management for Windows
+## Correct permission management for Windows
+```powershell
 icacls website.pem /inheritance:r /grant:r "$($env:USERNAME):(R)"
-
-# Verify connection
+```
+## Verify connection
 ```powershell
 ssh -i "website.pem" ubuntu@54.66.64.231
 ```
 Advanced SSH Debugging:
-# Verbose connection testing
+## Verbose connection testing
 ```powershell
 ssh -vvv -i "website.pem" ubuntu@54.66.64.231
 ```
-# Test server accessibility
+## Test server accessibility
+```powershell
 nmap -p 22 54.66.64.231
+```
 ### 3. ⚙️ Nginx Web Server Diagnostics
 Configuration Validation:
 ```powershell
@@ -536,14 +549,17 @@ curl -I https://rishabhkandhari14.com
 ```
 ### 4. 🔒 SSL Certificate Management
 Certificate Health Monitoring:
-```powershell
+
  Check certificate status
+ ```powershell
 sudo certbot certificates
-
+```
 Test renewal process
+```powershell
 sudo certbot renew --dry-run
-
+```
 Manual renewal if needed
+```powershell
 sudo certbot renew --nginx
 ```
 ### 5. 📊 System Performance Monitoring
@@ -562,9 +578,10 @@ curl -I https://github.com
 ### 7.Service status
 ```powershell
 sudo systemctl --failed
+```
 Emergency Response Procedures:
 Website Down (502/503 Errors):
-
+```powershell
 sudo systemctl status nginx
 sudo systemctl restart nginx
 Check logs: sudo tail -n 50 /var/log/nginx/error.log
@@ -574,7 +591,10 @@ Check logs: sudo tail -n 50 /var/log/nginx/error.log
 ```powershell
 sudo certbot renew --nginx
 sudo certbot certificates
-Test: curl -I https://rishabhkandhari14.com
+```
+Test:
+```powershell
+curl -I https://rishabhkandhari14.com
 ```
 Script Failures:
 ```powershell
@@ -585,7 +605,7 @@ Review logs: grep CRON /var/log/syslog
 
 ### ✨ Advanced Features & Professional Enhancements
 Modern Web Development Implementation:
-Email.js Integration: Professional contact form functionality without backend server requirements, enabling real-time communication with website visitors through automated email forwarding.
+## Email.js Integration: Professional contact form functionality without backend server requirements, enabling real-time communication with website visitors through automated email forwarding.
 Responsive Design Framework: Mobile-first CSS Grid and Flexbox implementation ensuring optimal user experience across all device types and screen sizes.
 JavaScript Interactivity: Dynamic content loading, smooth scroll animations, form validation, and interactive user interface elements providing professional user experience.
 Performance Optimization: Optimized image assets, efficient CSS/JavaScript execution, and fast server response times achieving excellent performance metrics.
@@ -597,14 +617,14 @@ Security headers preventing XSS and clickjacking attacks
 Content Security Policy implementation
 Automated security updates through custom maintenance scripts
 
-Business Functionality:
+## Business Functionality:
 
 Professional portfolio showcase with project demonstrations
 Functional contact form with Email.js service integration
 Resume download capability for potential employers
 Social media integration and professional networking links
 
-Scalability & Maintenance:
+## Scalability & Maintenance:
 
 Modular design enabling easy feature additions
 SEO optimization with semantic HTML and meta tags
