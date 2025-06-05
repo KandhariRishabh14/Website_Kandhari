@@ -837,6 +837,7 @@ Step 1: Verify Cron Configuration
 ```powershell
 crontab -l
 ```
+
 ### Expected output:
 ```powershell
 # 8 1 * * * /home/ubuntu/website_backup.sh
@@ -848,16 +849,28 @@ crontab -l
 ```powershell
 ls -la /home/ubuntu/*.sh
 ```
+### Expected Output
+```powershell
+-rwxrwxr-x 1 ubuntu ubuntu 835 Jun  5 09:24 /home/ubuntu/auto_update.sh
+-rwxrwxr-x 1 ubuntu ubuntu 887 May 18 18:57 /home/ubuntu/auto_update_reboot.sh
+-rwxr-xr-x 1 root   root   432 Jun  5 09:30 /home/ubuntu/github_auto_pull.sh
+-rwxr-xr-x 1 root   root   641 Jun  5 09:21 /home/ubuntu/website_backup.sh
+```
+
 ###  Correct permissions should show:
 ```powershell
  -rwxr-xr-x (executable for all)
-Step 3: Execution Logging
-bash# Monitor cron execution
+```
+### Step 3: Execution Logging
+ Monitor cron execution
+ ```powershell
 grep CRON /var/log/syslog | tail -n 10
-
- Expected successful output:
-
- CRON[PID]: (ubuntu) CMD (/home/ubuntu/script-name.sh)
+```
+### Expected Output
+```powershell
+2025-06-05T09:00:01.804206+00:00 ip-172-31-25-27 CRON[11657]: (ubuntu) CMD (/home/ubuntu/github_auto_pull.sh)
+2025-06-05T09:05:01.701236+00:00 ip-172-31-25-27 CRON[11685]: (ubuntu) CMD (/home/ubuntu/github_auto_pull.sh)
+2025-06-05T09:10:01.326353+00:00 ip-172-31-25-27 CRON[11743]: (ubuntu) CMD (/home/ubuntu/github_auto_pull.sh)
 ```
 Resolution:
 ```powershell
@@ -875,6 +888,17 @@ icacls website.pem /inheritance:r /grant:r "$($env:USERNAME):(R)"
 ```powershell
 ssh -i "website.pem" ubuntu@54.66.64.231
 ```
+
+### Expected Output 
+```powershell
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-1029-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Jun  5 10:19:05 UTC 2025
+```
 Advanced SSH Debugging:
 ## Verbose connection testing
 ```powershell
@@ -884,28 +908,85 @@ ssh -vvv -i "website.pem" ubuntu@54.66.64.231
 ```powershell
 nmap -p 22 54.66.64.231
 ```
+#### Expected Output 
+```powershell
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-05 10:32 UTC
+Nmap scan report for ec2-54-66-64-231.ap-southeast-2.compute.amazonaws.com (54.66.64.231)
+Host is up (0.0011s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 1 IP address (1 host up) scanned in 0.05 seconds
+```
+
 ### 3. ⚙️ Nginx Web Server Diagnostics
 Configuration Validation:
 ```powershell
  Test configuration syntax
 sudo nginx -t
 ```
-
-Monitor real-time errors
+### Expected Output
+```powershell
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+### Monitor real-time errors
 ```powershell
 sudo tail -f /var/log/nginx/error.log
 ```
- Verify service status
+###  Verify service status
+```powershell
 sudo systemctl status nginx
-Performance Monitoring:
+```
+### Expected Output
+```powershell
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2025-06-04 06:29:54 UTC; 1 day 4h ago
+       Docs: man:nginx(8)
+    Process: 13082 ExecReload=/usr/sbin/nginx -g daemon on; master_process on; -s reload (code=exited, status=0/SUCCESS)
+   Main PID: 653 (nginx)
+      Tasks: 3 (limit: 2268)
+     Memory: 8.4M (peak: 11.2M)
+        CPU: 1.350s
+     CGroup: /system.slice/nginx.service
+             ├─  653 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─13084 "nginx: worker process"
+             └─13085 "nginx: worker process"
+
+```
+### Performance Monitoring:
+
 ```powershell
 Check listening ports
 sudo netstat -tlnp | grep nginx
 ```
+### Expected Output 
+```powershell
+tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      653/nginx: master p
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      653/nginx: master p
  Test local connectivity
  ```powershell
+```
+#### Chechking Connectivity
+```powershell
 curl -I http://localhost
 curl -I https://rishabhkandhari14.com
+```
+#### Expected Output
+
+```powershell
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 05 Jun 2025 10:40:49 GMT
+Content-Type: text/html
+Content-Length: 32133
+Last-Modified: Sun, 18 May 2025 14:54:46 GMT
+Connection: keep-alive
+ETag: "6829f4b6-7d85"
+Strict-Transport-Security: max-age=31536000
+Accept-Ranges: bytes
 ```
 ### 4. 🔒 SSL Certificate Management
 Certificate Health Monitoring:
@@ -914,14 +995,51 @@ Certificate Health Monitoring:
  ```powershell
 sudo certbot certificates
 ```
-Test renewal process
+#### Expected Output
+```powershell
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Found the following certs:
+  Certificate Name: rishabhkandhari14.com
+    Serial Number: xxxxxxxxxxxxxxxxxxxxxx
+    Key Type: ECDSA
+    Domains: rishabhkandhari14.com www.rishabhkandhari14.com
+    Expiry Date: 2025-08-16 15:19:02+00:00 (VALID: 72 days)
+    Certificate Path: /etc/letsencrypt/live/rishabhkandhari14.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/rishabhkandhari14.com/privkey.pem
+```
+### Test renewal process
 ```powershell
 sudo certbot renew --dry-run
 ```
-Manual renewal if needed
+#### Expected Output
+```powershell
+ubuntu@ip-172-31-25-27:~$ sudo certbot renew --dry-run
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/rishabhkandhari14.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Simulating renewal of an existing certificate for rishabhkandhari14.com and www.rishabhkandhari14.com
+```
+
+### Manual renewal if needed
 ```powershell
 sudo certbot renew --nginx
 ```
+
+##### Expected Output
+```powershell
+ sudo certbot renew --nginx
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/rishabhkandhari14.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Certificate not yet due for renewal
+```
+
 ### 5. 📊 System Performance Monitoring
 Comprehensive Health Checks:
 Resource monitoring
