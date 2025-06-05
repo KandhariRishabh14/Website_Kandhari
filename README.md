@@ -189,7 +189,7 @@ bashsudo ln -s /etc/nginx/sites-available/portfolio /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
-## 7. 🌐 DNS Configuration with Route 53
+### 7. 🌐 DNS Configuration with Route 53
 Domain Registration Process:
 
 Access AWS Route 53 console
