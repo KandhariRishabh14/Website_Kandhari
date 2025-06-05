@@ -240,35 +240,3 @@ Security Rating: A+ (Perfect score)
 Certificate Authority: Let's Encrypt
 Encryption: TLS 1.3 with modern cipher suites
 
-### 1. 📦 Automated Backup System
-
-**Business Purpose:**  
-Provides automated daily backups with compression, timestamping, and immediate notification of success or failure to prevent catastrophic data loss.
-
-**Script Location:** `/home/ubuntu/website_backup.sh`
-
-```bash
-#!/bin/bash
-
-# Professional Configuration Management
-BACKUP_DIR="/home/ubuntu/backups"
-WEBSITE_DIR="/var/www/portfolio"
-DATE=$(date +%Y%m%d_%H%M%S)
-BACKUP_FILE="website_backup_$DATE.tar.gz"
-SLACK_WEBHOOK="https://hooks.slack.com/services/YOUR/BACKUP/WEBHOOK"
-
-mkdir -p $BACKUP_DIR
-tar -czf "$BACKUP_DIR/$BACKUP_FILE" -C "$WEBSITE_DIR" .
-
-if [ $? -eq 0 ]; then
-    FILE_SIZE=$(du -h "$BACKUP_DIR/$BACKUP_FILE" | cut -f1)
-    MESSAGE="✅ Website backup completed successfully: $BACKUP_FILE (Size: $FILE_SIZE)"
-else
-    MESSAGE="❌ Website backup failed! Immediate attention required."
-fi
-
-curl -X POST -H 'Content-type: application/json' \
-    --data "{\"text\":\"$MESSAGE\"}" \
-    $SLACK_WEBHOOK
-
-echo $MESSAGE
