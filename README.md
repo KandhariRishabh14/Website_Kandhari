@@ -162,6 +162,15 @@ chmod 400 website.pem
 
 # Connect to server
 ssh -i "website.pem" ubuntu@54.66.64.231
+
+### Expected Output
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.2.0-1009-aws x86_64)
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Last login: Thu Jun  5 XX:XX:XX 2025 from XXX.XXX.XXX.XXX
+ubuntu@ip-172-31-25-27:~$
 ```
 ## 4. 📦 Server Software Installation - Production Environment Setup
 ### System update and security patches
@@ -178,6 +187,40 @@ sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 ```
+
+
+#### Installation Verification
+
+**Checking installed versions:**
+```bash
+nginx -v && git --version && certbot --version
+
+Expected Output:
+nginx version: nginx/1.24.0 (Ubuntu)
+git version 2.43.0
+certbot 2.9.0
+```
+#### Status Check
+```powershell
+sudo systemctl status nginx
+
+Expected Output:
+
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2025-06-04 06:29:54 UTC; 1 day 1h ago
+       Docs: man:nginx(8)
+   Main PID: 653 (nginx)
+      Tasks: 3 (limit: 2268)
+     Memory: 8.3M (peak: 10.5M)
+        CPU: 1.154s
+     CGroup: /system.slice/nginx.service
+             ├─653 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─660 "nginx: worker process"
+             └─661 "nginx: worker process"
+
+```
+
 ## 5. 📁 Website Deployment - GitHub Integration
  Navigate to web root directory
 ```powershell
@@ -189,6 +232,34 @@ sudo git clone https://github.com/KandhariRishabh14/Website_Kandhari.git portfol
 ```
  Verify deployment
 ls -la /var/www/portfolio
+
+```powershell
+Expected Output:
+total 2628
+drwxr-xr-x 3 ubuntu ubuntu    4096 Jun  5 07:40 .
+drwxr-xr-x 3 root   root      4096 May 18 14:54 ..
+drwxr-xr-x 8 ubuntu ubuntu    4096 Jun  5 07:50 .git
+-rw-rw-r-- 1 ubuntu ubuntu      43 Jun  4 06:25 .gitattributes
+-rw-rw-r-- 1 ubuntu ubuntu     133 Jun  4 06:25 DocumentationKandhariICT171_35118707.docx
+-rw-rw-r-- 1 ubuntu ubuntu   33057 Jun  5 07:40 README.md
+-rw-r--r-- 1 ubuntu ubuntu   90480 May 18 14:54 charzard.gif
+-rw-r--r-- 1 ubuntu ubuntu  178793 May 18 14:54 cv.pdf
+-rw-r--r-- 1 ubuntu ubuntu   24783 May 18 14:54 gengar.gif
+-rw-r--r-- 1 ubuntu ubuntu   32133 May 18 14:54 index.html
+-rw-r--r-- 1 ubuntu ubuntu 2293778 May 18 14:54 me.gif
+```
+Verify Git Repository Status:
+```powershell
+cd /var/www/portfolio && git status
+```
+Expected Output:
+```powershell
+ubuntu@ip-172-XXXXXXX:~$ cd /var/www/portfolio && git status
+On branch main
+Your branch is up to date with 'origin/main'.
+nothing to commit, working tree clean
+ubuntu@ip-172-31-25-27:/var/www/portfolio$
+```
 ## 6. ⚙️ Nginx Web Server Configuration
 ### Remove Default Configuration:
 ```powershell
@@ -227,6 +298,43 @@ nginxserver {
 sudo nginx -t
 sudo systemctl reload nginx
 ```
+Expected Output:
+```powershell
+ubuntu@ip-172-XXXXXXX :/var/www/portfolio$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
+### Checking enabled sites:
+```powershell
+ls -la /etc/nginx/sites-enabled/
+```
+ Expected Output:
+ ```powershell
+
+ubuntu@ip-172-XXXXXXXX:/var/www/portfolio$ ls -la /etc/nginx/sites-enabled/
+total 8
+drwxr-xr-x 2 root root 4096 May 18 14:28 .
+drwxr-xr-x 8 root root 4096 May 18 16:36 ..
+lrwxrwxrwx 1 root root   34 May 18 14:28 default -> /etc/nginx/sites-available/default
+```
+### Testing security headers:
+```powershell
+curl -I https://rishabhkandhari14.com
+```
+Expected Output:
+```powershell
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Thu, 05 Jun 2025 10:06:49 GMT
+Content-Type: text/html
+Content-Length: 32133
+Last-Modified: Sun, 18 May 2025 14:54:46 GMT
+Connection: keep-alive
+ETag: "6829f4b6-7d85"
+Strict-Transport-Security: max-age=31536000
+Accept-Ranges: bytes
+```
+
 ## 7. 🌐 DNS Configuration with Route 53
 Domain Registration Process:
 
@@ -259,6 +367,37 @@ Testing Tool: DNS Checker
 Propagation Time: 1-5 minutes globally
 Verification: All global DNS servers showing correct resolution
 
+```markdown
+#### DNS Resolution Verification
+
+**Testing domain resolution:**
+
+nslookup rishabhkandhari14.com
+
+Expected Output:
+ubuntu@ip-XXXXXXXXXX:/var/www/portfolio$ nslookup rishabhkandhari14.com
+Server:         1X.0.0.X3
+Address:        1XX.0.0.XX5X
+
+Non-authoritative answer:
+Name:   rishabhkandhari14.com
+Address: 54.XX.XX.231
+```
+
+### Testing WWW subdomain:
+```powershell
+nslookup www.rishabhkandhari14.com
+```
+```powershell
+Expected Output:
+Server:         1x7.0.0.xx
+Address:        xx7.0.0.xx#xx
+
+Non-authoritative answer:
+Name:   www.rishabhkandhari14.com
+Address: 54.66.64.231
+
+```
 ## 8. 🔒 SSL Certificate Implementation - Enterprise Security
 Automated SSL Certificate Installation:
 ```powershell
@@ -280,6 +419,40 @@ Security Rating: A+ (Perfect score)
 Certificate Authority: Let's Encrypt
 Encryption: TLS 1.3 with modern cipher suites
 
+### DNS Propagation Status 
+**Checking certificate status:**
+```markdown
+sudo certbot certificates
+```
+```powershell
+Expected Output:
+Found the following certs:
+  Certificate Name: rishabhkandhari14.com
+    Serial Number: XXXXXXXXXXXXXXXXX
+    Key Type: RSA
+    Domains: rishabhkandhari14.com www.rishabhkandhari14.com
+    Expiry Date: 2025-XX-XX XX:XX:XX+00:00 (VALID: XX days)
+    Certificate Path: /etc/letsencrypt/live/rishabhkandhari14.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/rishabhkandhari14.com/privkey.pem
+```
+### Testing automatic renewal:
+```powershell
+sudo certbot renew --dry-run
+```
+
+```powershell
+Expected Output:
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/rishabhkandhari14.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Simulating renewal of an existing certificate for rishabhkandhari14.com and www.rishabhkandhari14.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations, all simulated renewals succeeded:
+  /etc/letsencrypt/live/rishabhkandhari14.com/fullchain.pem (success)
+```
 
 # 🤖 Advanced Linux Automation Scripts
 Script Architecture Overview:
@@ -304,8 +477,29 @@ tar -czf "$BACKUP_DIR/$BACKUP_FILE" "$SOURCE_DIR"
 /usr/bin/curl -X POST -H 'Content-type: application/json' \
 --data "{\"text\":\" Backup created successfully enjoy : $BACKUP_FILE\"}" \
 "Your Webhook url"
-Proven Performance Evidence:
--rw-rw-r-- 1 ubuntu ubuntu 5153613 May 18 17:43 portfolio_backup_2025-05-18_17-43-00.tar.gz
+```
+### Backup Script Testing & Verification
+
+**Manual script execution:**
+
+```powershell
+sudo /home/ubuntu/website_backup.sh
+```
+### Expected output:
+```powershell
+Backup created successfully enjoy : portfolio_backup_2025-06-05_15-30-45.tar.gz
+```
+
+**Verifying backup directory**
+```powershell
+ls -la /home/ubuntu/backups/
+```
+
+#### Proven Performance Evidence:
+**Backup history showing automated daily backups**
+```powershell
+-rw-rw-r-- 1 ubuntu ubuntu
+5153613 May 18 17:43 portfolio_backup_2025-05-18_17-43-00.tar.gz
 -rw-rw-r-- 1 ubuntu ubuntu 5153691 May 19 01:08 portfolio_backup_2025-05-19_01-08-01.tar.gz
 -rw-rw-r-- 1 ubuntu ubuntu 5153691 May 20 01:08 portfolio_backup_2025-05-20_01-08-01.tar.gz
 -rw-rw-r-- 1 ubuntu ubuntu 5153691 May 21 13:36 portfolio_backup_2025-05-21_13-36-29.tar.gz
@@ -325,6 +519,7 @@ Scheduling Configuration:
 ## 2. 🔄 Continuous Integration & Deployment Pipeline
 Business Purpose: Implements automated continuous deployment by pulling latest GitHub changes every 5 minutes, enabling rapid feature deployment with zero-downtime updates.
 Script Location: /home/ubuntu/github_auto_pull.sh
+
 ```powershell
 #!/bin/bash
 cd /var/www/portfolio
@@ -340,7 +535,27 @@ Send Slack notification
 curl -X POST -H 'Content-type: application/json' \
 --data "{\"text\":\"🔁 GitHub Auto-Pull Triggered at $TIMESTAMP\nResult:\n$GIT_OUTPUT\"}" \
 Your Webhook url/
-Live Performance Evidence:
+```
+
+#### GitHub Auto-Pull Script Testing 
+
+**Manual script execution:**
+```powershell
+sudo /home/ubuntu/github_auto_pull.sh
+```
+***Expected Output**
+```powershell
+okubuntu@ip-172-31-25-27:/var/www/portfolio$ sudo /home/ubuntu/github_auto_pull.sh
+okubuntu@ip-172-31-25-27:/var/www/portfolio$
+```
+
+**Checking deployment log**
+```powershell
+tail -10 /home/ubuntu/github_sync.log
+```
+**Expected Output**
+```powershell
+
 bash[2025-06-05 04:40:04] Git Pull Result: From github.com:KandhariRishabh14/Website_Kandhari
    7bd9872..f8a1c46  main       -> origin/main
 Updating 7bd9872..f8a1c46
@@ -393,9 +608,44 @@ if [ -f /var/run/reboot-required ]; then
     sudo reboot
 fi
 ```
+
+
+#### System Update Script Testing & Verification
+
+**Manual script execution:**
+```bash
+sudo /home/ubuntu/auto_update.sh
+```
+***Expected Output**
+```powershell
+ubuntu@ip-17xxxxxxxxxx:/var/www/portfolio$ sudo /home/ubuntu/auto_update.sh
+Hit:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu noble InRelease
+Get:2 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:3 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB
+```
+
+#### Checking for available updates:
+```powershell
+apt list --upgradable
+```
+
+#### Expected Output 
+```powershell
+ apt list --upgradable
+Listing... Done
+ibverbs-providers/noble-updates 50.0-2ubuntu0.2 amd64 [upgradable from: 50.0-2build2]
+libibverbs1/noble-updates 50.0-2ubuntu0.2 amd64 [upgradable from: 50.0-2build2]
+```
+*** System reboot requirement check
+```powershell
+ls /var/run/reboot-required
+```
+*** Expected Output if no reboot required 
+```powershell
+ls: cannot access '/var/run/reboot-required': No such file or directory
+```
+
 ### Enterprise Features:
-
-
 Strategic Maintenance Scheduling:
 ### Crontab entry for daily maintenance at 2:40 PM
 
@@ -403,17 +653,32 @@ Strategic Maintenance Scheduling:
 40 14 * * * /home/ubuntu/auto_update.sh
 ```
 ## Script Performance Verification:
-System Health Status:
+#### Complete System Health Verification
+
+**System services status:**
+```bash
+sudo systemctl --failed
+```
+*** Expected Output
 ```powershell
 ubuntu@ip-172-31-25-27:/var/www/portfolio$ sudo systemctl --failed
   UNIT LOAD ACTIVE SUB DESCRIPTION
 0 loaded units listed.
 Script File Status:
+```
+Verifying Script files and permissions:
+```powershell
 ubuntu@ip-172-31-25-27:~$ ls -la /home/ubuntu/*.sh
+```
+
+***Expected Output 
+```powershell
 -rwxrwxr-x 1 ubuntu ubuntu 836 May 19 13:24 /home/ubuntu/auto_update.sh
 -rwxr-xr-x 1 root   root   477 May 18 18:36 /home/ubuntu/github_auto_pull.sh
 -rwxr-xr-x 1 root   root   643 May 18 18:03 /home/ubuntu/website_backup.sh
 ```
+
+
 Script Installation & Configuration:
 ### 1. Create Script Files:
 ```powershell
@@ -440,6 +705,36 @@ crontab -e
 ### 4. Verify Active Schedules:
 ```powershell
 crontab -l
+```
+#### Expected Output
+```powershell
+#
+# m h  dom mon dow   command
+8 1 * * * /home/ubuntu/website_backup.sh
+*/5 * * * * /home/ubuntu/github_auto_pull.sh
+21 14 * * * /home/ubuntu/auto_update.sh
+```
+
+#### Verifying cron execution in system logs:
+```powershell
+grep CRON /var/log/syslog | grep ubuntu | tail -10
+```
+*** Expected Output
+```powershell
+Jun  5 01:08:01 ip-172-31-25-27 CRON[12345]: (ubuntu) CMD (/home/ubuntu/website_backup.sh)
+Jun  5 04:35:01 ip-172-31-25-27 CRON[12346]: (ubuntu) CMD (/home/ubuntu/github_auto_pull.sh)
+Jun  5 14:40:01 ip-172-31-25-27 CRON[12347]: (ubuntu) CMD (/home/ubuntu/auto_update.sh)
+```
+
+#### Website performance verification:
+```powershell
+curl -s -o /dev/null -w "HTTP Status: %{http_code}\nTotal Time: %{time_total}s\n" https://rishabhkandhari14.com
+```
+*** Expected Output
+```powershell
+{time_total}s\n" https://rishabhkandhari14.com
+HTTP Status: 200
+Total Time: 0.137054s
 ```
 ## 📱 Slack Integration - My 24/7 Server Monitoring Setup
 
@@ -635,6 +930,17 @@ htop
 free -h
 df -h
 ```
+### Expected Output
+
+```powershell
+ 09:53:24 up 1 day,  3:23,  1 user,  load average: 0.00, 0.00, 0.00
+               total        used        free      shared  buff/cache   available
+Mem:           1.9Gi       376Mi       592Mi       3.0Mi       1.1Gi       1.5Gi
+Swap:             0B          0B          0B
+Filesystem       Size  Used Avail Use% Mounted on
+/dev/root        8.7G  3.7G  5.0G  43% /
+tmpfs            956M     0  956M   0% /dev/shm
+tmpfs            383M  904K  382M   1% /run
 ### 6. Network connectivity
 ```powershell
 ping -c 4 google.com
