@@ -542,13 +542,15 @@ Step 1: Verify Cron Configuration
 ```powershell
 crontab -l
 ```
-# Expected output:
+### Expected output:
 ```powershell
 # 8 1 * * * /home/ubuntu/website_backup.sh
 # */5 * * * * /home/ubuntu/github_auto_pull.sh
 # 40 14 * * * /home/ubuntu/auto_update.sh
-Step 2: Permission Analysis
-bash# Check file permissions
+```
+### Step 2: Permission Analysis
+   Check file permissions
+```powershell
 ls -la /home/ubuntu/*.sh
 ```
 ###  Correct permissions should show:
