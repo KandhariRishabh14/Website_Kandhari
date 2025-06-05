@@ -543,7 +543,7 @@ Your Webhook url/
 ```powershell
 sudo /home/ubuntu/github_auto_pull.sh
 ```
-***Expected Output**
+**Expected Output**
 ```powershell
 okubuntu@ip-172-31-25-27:/var/www/portfolio$ sudo /home/ubuntu/github_auto_pull.sh
 okubuntu@ip-172-31-25-27:/var/www/portfolio$
@@ -616,7 +616,7 @@ fi
 ```bash
 sudo /home/ubuntu/auto_update.sh
 ```
-***Expected Output**
+** Expected Output
 ```powershell
 ubuntu@ip-17xxxxxxxxxx:/var/www/portfolio$ sudo /home/ubuntu/auto_update.sh
 Hit:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu noble InRelease
