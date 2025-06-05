@@ -236,14 +236,20 @@ Security Rating: A+ (Perfect score)
 Certificate Authority: Let's Encrypt
 Encryption: TLS 1.3 with modern cipher suites
 ```
+## 🤖 Advanced Linux Automation Scripts
 
-🤖 Advanced Linux Automation Scripts
-Script Architecture Overview:
-Professional DevOps Implementation: Three production-ready automation scripts providing comprehensive server management, continuous deployment, and disaster recovery capabilities with real-time monitoring integration.
-1. 📦 Automated Backup System
-Business Purpose: Provides automated daily backups with compression, timestamping, and immediate notification of success or failure to prevent catastrophic data loss.
-Script Location: /home/ubuntu/website_backup.sh
-bash#!/bin/bash
+### Script Architecture Overview:
+
+**Professional DevOps Implementation:** Three production-ready automation scripts providing comprehensive server management, continuous deployment, and disaster recovery capabilities with real-time monitoring integration.
+
+### 1. 📦 Automated Backup System
+
+**Business Purpose:** Provides automated daily backups with compression, timestamping, and immediate notification of success or failure to prevent catastrophic data loss.
+
+**Script Location:** `/home/ubuntu/website_backup.sh`
+
+```bash
+#!/bin/bash
 
 # Professional Configuration Management
 BACKUP_DIR="/home/ubuntu/backups"
@@ -270,17 +276,20 @@ fi
 curl -X POST -H 'Content-type: application/json' \
     --data "{\"text\":\"$MESSAGE\"}" \
     $SLACK_WEBHOOK
-
+```
+```bash
 echo $MESSAGE
 Scheduling Configuration:
 bash# Crontab entry for daily backups at 1:08 AM
 8 1 * * * /home/ubuntu/website_backup.sh
-2. 🔄 Continuous Integration & Deployment Pipeline
+```
+## 2. 🔄 Continuous Integration & Deployment Pipeline
 Business Purpose: Implements automated continuous deployment by pulling latest GitHub changes every 5 minutes, enabling rapid feature deployment with zero-downtime updates.
 Script Location: /home/ubuntu/github_auto_pull.sh
 bash#!/bin/bash
 
 # CI/CD Configuration
+```bash
 WEBSITE_DIR="/var/www/portfolio"
 SLACK_WEBHOOK="https://hooks.slack.com/services/YOUR/GITHUB/WEBHOOK"
 
@@ -308,6 +317,7 @@ echo $MESSAGE
 High-Frequency Deployment Schedule:
 bash# Crontab entry for continuous integration every 5 minutes
 */5 * * * * /home/ubuntu/github_auto_pull.sh
+```
 3. 🔧 Proactive System Maintenance & Security Management
 Business Purpose: Automated system updates with intelligent reboot management, ensuring server security and stability while minimizing downtime through scheduled maintenance windows.
 Script Location: /home/ubuntu/auto_update.sh
@@ -344,12 +354,13 @@ fi
 curl -X POST -H 'Content-type: application/json' \
     --data "{\"text\":\"$MESSAGE\"}" \
     $SLACK_WEBHOOK
-
+```
 echo $MESSAGE
 Strategic Maintenance Scheduling:
 bash# Crontab entry for daily maintenance at 2:40 PM
 40 14 * * * /home/ubuntu/auto_update.sh
-Script Installation & Configuration:
+```
+### Script Installation & Configuration:
 1. Create Script Files:
 bashsudo nano /home/ubuntu/website_backup.sh
 sudo nano /home/ubuntu/github_auto_pull.sh
