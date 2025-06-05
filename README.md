@@ -558,7 +558,15 @@ Course: ICT 171 Assignment 2
 Email: Contact via website form
 Project Verification:
 
-🌐 Live Website: https://rishabhkandhari14.com
-📁 GitHub Repository: Website_Kandhari
-🔒 SSL Certificate: SSL Labs Test
-🌍 DNS Verification: DNS Checker
+## 📞 Contact & Project Information
+
+**Student:** Rishabh Kandhari  
+**Student ID:** 35118707  
+**Course:** ICT 171 Assignment 2  
+**Email:** Contact via [website form](https://rishabhkandhari14.com)
+
+**Project Verification:**
+- 🌐 **Live Website:** [https://rishabhkandhari14.com](https://rishabhkandhari14.com)
+- 📁 **GitHub Repository:** [Website_Kandhari](https://github.com/KandhariRishabh14/Website_Kandhari)
+- 🔒 **SSL Certificate:** [SSL Labs Test](https://www.ssllabs.com/ssltest/analyze.html?d=rishabhkandhari14.com)
+- 🌍 **DNS Verification:** [DNS Checker](https://dnschecker.org/#A/rishabhkandhari14.com)
