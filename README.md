@@ -543,7 +543,7 @@ Your Webhook url/
 ```powershell
 sudo /home/ubuntu/github_auto_pull.sh
 ```
-**Expected Output**
+Expected Output
 ```powershell
 okubuntu@ip-172-31-25-27:/var/www/portfolio$ sudo /home/ubuntu/github_auto_pull.sh
 okubuntu@ip-172-31-25-27:/var/www/portfolio$
@@ -553,7 +553,7 @@ okubuntu@ip-172-31-25-27:/var/www/portfolio$
 ```powershell
 tail -10 /home/ubuntu/github_sync.log
 ```
-**Expected Output**
+Expected Output
 ```powershell
 
 bash[2025-06-05 04:40:04] Git Pull Result: From github.com:KandhariRishabh14/Website_Kandhari
@@ -616,7 +616,7 @@ fi
 ```bash
 sudo /home/ubuntu/auto_update.sh
 ```
-** Expected Output
+ Expected Output
 ```powershell
 ubuntu@ip-17xxxxxxxxxx:/var/www/portfolio$ sudo /home/ubuntu/auto_update.sh
 Hit:1 http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu noble InRelease
@@ -640,7 +640,7 @@ libibverbs1/noble-updates 50.0-2ubuntu0.2 amd64 [upgradable from: 50.0-2build2]
 ```powershell
 ls /var/run/reboot-required
 ```
-*** Expected Output if no reboot required 
+ Expected Output if no reboot required 
 ```powershell
 ls: cannot access '/var/run/reboot-required': No such file or directory
 ```
@@ -659,7 +659,7 @@ Strategic Maintenance Scheduling:
 ```bash
 sudo systemctl --failed
 ```
-*** Expected Output
+ Expected Output
 ```powershell
 ubuntu@ip-172-31-25-27:/var/www/portfolio$ sudo systemctl --failed
   UNIT LOAD ACTIVE SUB DESCRIPTION
@@ -671,7 +671,7 @@ Verifying Script files and permissions:
 ubuntu@ip-172-31-25-27:~$ ls -la /home/ubuntu/*.sh
 ```
 
-***Expected Output 
+Expected Output 
 ```powershell
 -rwxrwxr-x 1 ubuntu ubuntu 836 May 19 13:24 /home/ubuntu/auto_update.sh
 -rwxr-xr-x 1 root   root   477 May 18 18:36 /home/ubuntu/github_auto_pull.sh
@@ -719,7 +719,7 @@ crontab -l
 ```powershell
 grep CRON /var/log/syslog | grep ubuntu | tail -10
 ```
-*** Expected Output
+ Expected Output
 ```powershell
 Jun  5 01:08:01 ip-172-31-25-27 CRON[12345]: (ubuntu) CMD (/home/ubuntu/website_backup.sh)
 Jun  5 04:35:01 ip-172-31-25-27 CRON[12346]: (ubuntu) CMD (/home/ubuntu/github_auto_pull.sh)
@@ -730,7 +730,7 @@ Jun  5 14:40:01 ip-172-31-25-27 CRON[12347]: (ubuntu) CMD (/home/ubuntu/auto_upd
 ```powershell
 curl -s -o /dev/null -w "HTTP Status: %{http_code}\nTotal Time: %{time_total}s\n" https://rishabhkandhari14.com
 ```
-*** Expected Output
+ Expected Output
 ```powershell
 {time_total}s\n" https://rishabhkandhari14.com
 HTTP Status: 200
