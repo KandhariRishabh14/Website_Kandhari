@@ -303,7 +303,7 @@ tar -czf "$BACKUP_DIR/$BACKUP_FILE" "$SOURCE_DIR"
 # === Slack Notification ===
 /usr/bin/curl -X POST -H 'Content-type: application/json' \
 --data "{\"text\":\" Backup created successfully enjoy : $BACKUP_FILE\"}" \
-"https://hooks.slack.com/services/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"
+"Your Webhook url"
 Proven Performance Evidence:
 -rw-rw-r-- 1 ubuntu ubuntu 5153613 May 18 17:43 portfolio_backup_2025-05-18_17-43-00.tar.gz
 -rw-rw-r-- 1 ubuntu ubuntu 5153691 May 19 01:08 portfolio_backup_2025-05-19_01-08-01.tar.gz
@@ -339,7 +339,7 @@ echo "[$TIMESTAMP] Git Pull Result: $GIT_OUTPUT" >> /home/ubuntu/github_sync.log
 Send Slack notification
 curl -X POST -H 'Content-type: application/json' \
 --data "{\"text\":\"🔁 GitHub Auto-Pull Triggered at $TIMESTAMP\nResult:\n$GIT_OUTPUT\"}" \
-https://hooks.slack.com/services/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
+Your Webhook url/
 Live Performance Evidence:
 bash[2025-06-05 04:40:04] Git Pull Result: From github.com:KandhariRishabh14/Website_Kandhari
    7bd9872..f8a1c46  main       -> origin/main
@@ -372,8 +372,8 @@ Script Location: /home/ubuntu/auto_update.sh
 ```powershell
 #!/bin/bash
 # Slack webhook URL
-WEBHOOK_URL="https://hooks.slack.com/services/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"
-
+##cant expose url
+WEBHOOK_URL="Your Webhook url/"
 # Run updates
 sudo apt update && sudo apt -y upgrade
 
