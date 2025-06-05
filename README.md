@@ -164,7 +164,7 @@ chmod 400 website.pem
 ssh -i "website.pem" ubuntu@54.66.64.231
 ```
 ## 4. 📦 Server Software Installation - Production Environment Setup
-###System update and security patches
+### System update and security patches
 ```powershell
 sudo apt update && sudo apt upgrade -y
 ```
