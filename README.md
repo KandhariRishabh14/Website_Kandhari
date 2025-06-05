@@ -167,18 +167,20 @@ bash# Navigate to web root directory
 ```powershell
 cd /var/www
 ```
-# Clone repository to production location
-
+ Clone repository to production location
+```powershell
 sudo git clone https://github.com/KandhariRishabh14/Website_Kandhari.git portfolio
-
-# Verify deployment
+```
+ Verify deployment
 ls -la /var/www/portfolio
 ### 6. ⚙️ Nginx Web Server Configuration
 Remove Default Configuration:
 ```powershell
 sudo rm /etc/nginx/sites-enabled/default
+```
 Create Production Virtual Host:
-bashsudo nano /etc/nginx/sites-available/portfolio
+```powershell
+sudo nano /etc/nginx/sites-available/portfolio
 Virtual Host Configuration:
 nginxserver {
     listen 80;
@@ -245,7 +247,7 @@ Testing Service: SSL Labs
 Security Rating: A+ (Perfect score)
 Certificate Authority: Let's Encrypt
 Encryption: TLS 1.3 with modern cipher suites
-```
+
 ## 🤖 Advanced Linux Automation Scripts
 
 ### Script Architecture Overview:
