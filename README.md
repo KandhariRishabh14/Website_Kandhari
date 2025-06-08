@@ -9,7 +9,7 @@
 
 - 🔒 [SSL Certificate (SSL Labs Test)](https://www.ssllabs.com/ssltest/analyze.html?d=rishabhkandhari14.com)  
 - 🌍 [DNS Verification (DNS Checker)](https://dnschecker.org/#A/rishabhkandhari14.com)
-
+- Detailed Docx File -  https://acrobat.adobe.com/id/urn:aaid:sc:ap:979dbf13-73ed-493d-a6c4-5617dc0c3ee6
 
 📋 **ICT 171 Assignment 2 - Complete Server Deployment & Automation Documentation**  
 🎓 **Student:** Rishabh Kandhari | **ID:** 35118707
