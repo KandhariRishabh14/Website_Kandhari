@@ -5,6 +5,12 @@
 
 🌐 **LIVE WEBSITE:** [https://rishabhkandhari14.com](https://rishabhkandhari14.com) **← CLICK TO VIEW DEPLOYED SITE**
 
+**Video Explainer Link** :https://youtu.be/YrKss14oPII 
+
+- 🔒 [SSL Certificate (SSL Labs Test)](https://www.ssllabs.com/ssltest/analyze.html?d=rishabhkandhari14.com)  
+- 🌍 [DNS Verification (DNS Checker)](https://dnschecker.org/#A/rishabhkandhari14.com)
+
+
 📋 **ICT 171 Assignment 2 - Complete Server Deployment & Automation Documentation**  
 🎓 **Student:** Rishabh Kandhari | **ID:** 35118707
 
@@ -226,11 +232,11 @@ Expected Output:
 ```powershell
 cd /var/www
 ```
- Clone repository to production location
+ ### Clone repository to production location
 ```powershell
 sudo git clone https://github.com/KandhariRishabh14/Website_Kandhari.git portfolio
 ```
- Verify deployment
+### Verify deployment
 ls -la /var/www/portfolio
 
 ```powershell
@@ -248,7 +254,7 @@ drwxr-xr-x 8 ubuntu ubuntu    4096 Jun  5 07:50 .git
 -rw-r--r-- 1 ubuntu ubuntu   32133 May 18 14:54 index.html
 -rw-r--r-- 1 ubuntu ubuntu 2293778 May 18 14:54 me.gif
 ```
-Verify Git Repository Status:
+### Verify Git Repository Status:
 ```powershell
 cd /var/www/portfolio && git status
 ```
